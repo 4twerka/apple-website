@@ -53,7 +53,11 @@ function Recomend() {
   const [isDesktop, setIsDesktop] = useState(false);
 
   const handleMenu = () => {
-    setIsDesktop((prev) => !prev);
+    setIsDesktop(true);
+  }
+
+  const handleMenuLaptop = () => {
+    setIsDesktop(false);
   }
 
   return (
@@ -63,14 +67,51 @@ function Recomend() {
           Which Mac is right for you?
         </h2>
         <div className="flex justify-center space-x-4 text-base sm:text-lg font-medium">
-          <button className="border-b-2 border-black pb-1">Notebook</button>
-          <button className="text-gray-400 hover:text-black transition">
+          <button onClick={handleMenuLaptop} className={isDesktop ? "text-gray-400" : "border-b-2 border-black pb-1"}>Notebook</button>
+          <button onClick={handleMenu} className={isDesktop ? "border-b-2 border-black pb-1" : "text-gray-400 hover:text-black transition"}>
             Desktop
           </button>
         </div>
       </div>
 
-      <div className="w-full max-w-lg md:hidden">
+      {isDesktop ? (
+        <div className="w-full max-w-lg md:hidden">
+        <Swiper
+          modules={[Pagination]}
+          pagination={{ clickable: true }}
+          spaceBetween={20}
+          slidesPerView={1}
+        >
+          {desktopCards.map((item) => (
+            <SwiperSlide key={item.name}>
+              <div className="p-6 border rounded-lg shadow-md bg-white text-center">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-40 object-cover mb-4 rounded"
+                />
+                <p className="text-base font-semibold mb-2">{item.name}</p>
+                <span className="block text-lg font-bold mb-4">
+                  {item.price} USD
+                </span>
+                <div className="flex justify-center gap-4">
+                  <button className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
+                    Buy
+                  </button>
+                  <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
+                    Details
+                  </button>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="mt-4 flex justify-center gap-2">
+          <div className="swiper-pagination"></div>
+        </div>
+      </div>
+      ) : (
+        <div className="w-full max-w-lg md:hidden">
         <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true }}
@@ -105,8 +146,39 @@ function Recomend() {
           <div className="swiper-pagination"></div>
         </div>
       </div>
+      )}
 
-      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+      {isDesktop ? (
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
+        {desktopCards.map((item, index) => (
+          <div
+            key={item.name}
+            className={`p-6 border rounded-lg shadow-md bg-white text-center ${
+              index === cards.length - 1 ? "lg:col-span-3 lg:justify-self-center" : ""
+            }`}
+          >
+            <img
+              src={item.img}
+              alt={item.name}
+              className="w-full h-40 object-cover mb-4 rounded"
+            />
+            <p className="text-base font-semibold mb-2">{item.name}</p>
+            <span className="block text-lg font-bold mb-4">
+              {item.price} USD
+            </span>
+            <div className="flex justify-center gap-4">
+              <button className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
+                Buy
+              </button>
+              <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
+                Details
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+      ) : (
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
         {cards.map((item, index) => (
           <div
             key={item.name}
@@ -134,6 +206,7 @@ function Recomend() {
           </div>
         ))}
       </div>
+      )}
 
       <div className="mt-8 flex space-x-6">
         <a

@@ -70,11 +70,6 @@ function Airpods() {
                       <p className="text-gray-700 text-sm mb-2">
                         {product.price}
                       </p>
-                      {product.label && (
-                        <span className="text-red-500 font-bold text-sm">
-                          {product.label}
-                        </span>
-                      )}
                     </div>
                     <div className="flex justify-between mt-4">
                       <button className="flex-1 bg-dark-custom-purple text-white py-2 rounded-lg hover:bg-light-custom-purple mx-1 transition-all">
@@ -108,11 +103,6 @@ function Airpods() {
                     {product.name}
                   </h2>
                   <p className="text-gray-700 text-sm mb-2">{product.price}</p>
-                  {product.label && (
-                    <span className="text-red-500 font-bold text-sm">
-                      {product.label}
-                    </span>
-                  )}
                 </div>
                 <div className="flex justify-between mt-4">
                   <button className="flex-1 bg-dark-custom-purple text-white py-2 rounded-lg hover:bg-light-custom-purple mx-1 transition-all">
