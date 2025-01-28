@@ -1,28 +1,35 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
+import PropTypes from 'prop-types';
 
-function Recomend() {
+
+function Recomend({ setCurrentItem }) {
+  Recomend.propTypes = {
+    setCurrentItem: PropTypes.func.isRequired,
+  };
+  
+
   const cards = [
     {
       name: "Apple Macbook Pro 14",
-      price: "1,999",
+      price: 1999,
       img: "/pictures/macbook-pro-14.png",
     },
     {
       name: "MacBook Air with M2 chip",
-      price: "2,399",
+      price: 2399,
       img: "/pictures/macbook-air-m2.png",
     },
     {
       name: "MacBook Air with M1 chip",
-      price: "829.99",
+      price: 2999,
       img: "/pictures/macbook-air-m1.png",
     },
     {
       name: "Apple MacBook Pro 13",
-      price: "829.99",
+      price: 2999,
       img: "/pictures/macbook-pro-13.png",
     },
   ];
@@ -30,22 +37,22 @@ function Recomend() {
   const desktopCards = [
     {
       name: "Apple IMac 24 M1 chip",
-      price: "1,449",
+      price: 1449,
       img: "https://content.rozetka.com.ua/goods/images/big/173875037.jpg",
     },
     {
       name: "Apple IMac 24 M3 chip",
-      price: "1,899",
+      price: 1899,
       img: "https://i.moyo.ua/img/products/5565/26_600.jpg",
     },
     {
       name: "Apple IMac 24 M1 256gb",
-      price: "1,359",
+      price: 1359,
       img: "https://content2.rozetka.com.ua/goods/images/big/173875373.jpg",
     },
     {
       name: "Apple IMac 24 M4 chip",
-      price: "1,999",
+      price: 1999,
       img: "https://content1.rozetka.com.ua/goods/images/big/485317855.jpg",
     },
   ]
@@ -59,6 +66,10 @@ function Recomend() {
   const handleMenuLaptop = () => {
     setIsDesktop(false);
   }
+
+  const hanldeAdd = (item) => {
+    setCurrentItem((prevItems) => [...prevItems, item]);
+  };  
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 px-4 sm:px-8">
@@ -95,7 +106,7 @@ function Recomend() {
                   {item.price} USD
                 </span>
                 <div className="flex justify-center gap-4">
-                  <button className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
+                  <button onClick={() => hanldeAdd(item)} className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
                     Buy
                   </button>
                   <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
@@ -131,7 +142,8 @@ function Recomend() {
                   {item.price} USD
                 </span>
                 <div className="flex justify-center gap-4">
-                  <button className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
+                  {/* here */}
+                  <button onClick={() => hanldeAdd(item)} className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
                     Buy
                   </button>
                   <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
@@ -167,7 +179,7 @@ function Recomend() {
               {item.price} USD
             </span>
             <div className="flex justify-center gap-4">
-              <button className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
+              <button onClick={() => hanldeAdd(item)} className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
                 Buy
               </button>
               <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
@@ -196,7 +208,7 @@ function Recomend() {
               {item.price} USD
             </span>
             <div className="flex justify-center gap-4">
-              <button className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
+              <button onClick={() => hanldeAdd(item)} className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
                 Buy
               </button>
               <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
