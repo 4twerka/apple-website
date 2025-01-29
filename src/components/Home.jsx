@@ -1,7 +1,20 @@
-import React, { useState } from "react";
-import Recomend from "./Recomend";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import PropTypes from 'prop-types';
 
-function Home() {
+function Home({ currentItem }) {
+  Home.propTypes = {
+          currentItem: PropTypes.arrayOf(
+            PropTypes.shape({
+              name: PropTypes.string.isRequired,
+              price: PropTypes.string.isRequired,
+              img: PropTypes.string.isRequired,
+              id: PropTypes.number.isRequired,
+            })
+          ),
+          setCurrentItem: PropTypes.func.isRequired,
+  };
+
   const navigation = [
     { name: "Store" },
     { name: "Mac" },
@@ -63,9 +76,15 @@ function Home() {
           <button>
             <img src="/pictures/search.png" alt="Search" className="h-5" />
           </button>
-          <button>
+          <Link to="/basket" className="relative inline-block">
             <img src="/pictures/shop.png" alt="Shop" className="h-5" />
-          </button>
+            {currentItem.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+              {currentItem.length}
+            </span>
+            )}
+          </Link>
+
         </div>
       </header>
 
@@ -87,9 +106,14 @@ function Home() {
             <button onClick={() => setIsOpen(false)}>
               <img src="/pictures/search.png" alt="Search" className="h-8" />
             </button>
-            <button onClick={() => setIsOpen(false)}>
-              <img src="/pictures/shop.png" alt="Shop" className="h-8" />
-            </button>
+            <Link to="/basket" className="relative inline-block">
+            <img src="/pictures/shop.png" alt="Shop" className="h-5" />
+            {currentItem.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+              {currentItem.length}
+            </span>
+            )}
+          </Link>
           </div>
         </div>
       )}

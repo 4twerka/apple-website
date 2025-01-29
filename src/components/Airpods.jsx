@@ -3,31 +3,47 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import PropTypes from 'prop-types';
 
-function Airpods() {
+function Airpods({ setCurrentItem }) {
+  Airpods.propTypes = {
+    setCurrentItem: PropTypes.func.isRequired,
+    currentItem: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired
+      })
+    )
+  };
+
   const airpods = [
     {
       name: "AirPods 2nd generation",
-      price: "$129 USD",
-      image: "/pictures/airpods2.png",
+      price: 129,
+      img: "/pictures/airpods2.png",
     },
     {
       name: "AirPods 3rd generation",
-      price: "$169 USD",
-      image: "/pictures/airpods3.png",
+      price: 169,
+      img: "/pictures/airpods3.png",
     },
     {
       name: "AirPods Pro 2nd generation",
-      price: "$249 USD",
-      image: "/pictures/airpodspro.png",
+      price: 249,
+      img: "/pictures/airpodspro.png",
       label: "New",
     },
     {
       name: "AirPods Max",
-      price: "$249 USD",
-      image: "/pictures/airpods-max.png",
+      price: 449,
+      img: "/pictures/airpods-max.png",
     },
   ];
+
+  const handleAdd = (item) => {
+    setCurrentItem((prevItems) => [...prevItems, item]);
+  };
 
   return (
     <div className="h-screen flex flex-col justify-center items-center bg-gray-50 px-4 sm:px-8">
@@ -60,7 +76,7 @@ function Airpods() {
                   <div className="w-[240px] mx-auto bg-white border border-gray-300 rounded-lg shadow-md p-4 flex-shrink-0">
                     <div className="flex flex-col items-center">
                       <img
-                        src={product.image}
+                        src={product.img}
                         alt={product.name}
                         className="w-28 h-28 object-contain mb-4"
                       />
@@ -68,11 +84,11 @@ function Airpods() {
                         {product.name}
                       </h2>
                       <p className="text-gray-700 text-sm mb-2">
-                        {product.price}
+                        {product.price} USD
                       </p>
                     </div>
                     <div className="flex justify-between mt-4">
-                      <button className="flex-1 bg-dark-custom-purple text-white py-2 rounded-lg hover:bg-light-custom-purple mx-1 transition-all">
+                      <button onClick={() => handleAdd(product)} className="flex-1 bg-dark-custom-purple text-white py-2 rounded-lg hover:bg-light-custom-purple mx-1 transition-all">
                         Buy
                       </button>
                       <button className="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 mx-1 transition-all">
@@ -95,17 +111,17 @@ function Airpods() {
               >
                 <div className="flex flex-col items-center">
                   <img
-                    src={product.image}
+                    src={product.img}
                     alt={product.name}
                     className="w-28 h-28 object-contain mb-4"
                   />
                   <h2 className="text-lg font-semibold text-center mb-2">
                     {product.name}
                   </h2>
-                  <p className="text-gray-700 text-sm mb-2">{product.price}</p>
+                  <p className="text-gray-700 text-sm mb-2">{product.price} USD</p>
                 </div>
                 <div className="flex justify-between mt-4">
-                  <button className="flex-1 bg-dark-custom-purple text-white py-2 rounded-lg hover:bg-light-custom-purple mx-1 transition-all">
+                  <button onClick={() => handleAdd(product)} className="flex-1 bg-dark-custom-purple text-white py-2 rounded-lg hover:bg-light-custom-purple mx-1 transition-all">
                     Buy
                   </button>
                   <button className="flex-1 bg-gray-200 text-gray-800 py-2 rounded-lg hover:bg-gray-300 mx-1 transition-all">

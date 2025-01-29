@@ -1,21 +1,32 @@
 import PropTypes from 'prop-types';
 
-function Basket({ currentItem }) {
+function Basket({ currentItem, setCurrentItem }) {
     Basket.propTypes = {
         currentItem: PropTypes.arrayOf(
           PropTypes.shape({
             name: PropTypes.string.isRequired,
             price: PropTypes.string.isRequired,
-            img: PropTypes.string.isRequired
+            img: PropTypes.string.isRequired,
+            id: PropTypes.number.isRequired,
           })
-        )
-      };   
-      
+        ),
+        setCurrentItem: PropTypes.func.isRequired,
+    };
       const sum = currentItem.reduce((acc, currentValue) => {
         return acc + currentValue.price;
       }, 0);
 
       const tax = (sum * 8) / 100 | 0;
+
+      const handleDelete = (id) => {
+        const result = currentItem.filter((item) => {
+            if (item === id) {
+                return false;
+            } else true;
+
+            setCurrentItem(result);
+        })
+      }
 
     return (
       <div className="bg-gray-50 min-h-screen p-4 sm:p-8">
@@ -49,7 +60,6 @@ function Basket({ currentItem }) {
                       {item.name}
                     </h2>
                     <p className="text-gray-500 text-sm mt-1">{item.price} USD</p>
-                    <p className="text-gray-800 font-semibold mt-2">{item.price}</p>
                   </div>
   
                   <div className="flex items-center space-x-4 mt-4 sm:mt-0 sm:ml-auto">
@@ -58,7 +68,7 @@ function Basket({ currentItem }) {
                       className="w-16 text-center border border-gray-300 rounded-md"
                       defaultValue="1"
                     />
-                    <button className="text-red-500 hover:text-red-700 transition">
+                    <button onClick={() => {handleDelete(item.id)}} className="text-red-500 hover:text-red-700 transition">
                       Remove
                     </button>
                   </div>
