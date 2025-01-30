@@ -16,21 +16,25 @@ function Recomend({ setCurrentItem }) {
       name: "Apple Macbook Pro 14",
       price: 1999,
       img: "/pictures/macbook-pro-14.png",
+      id: Math.random()
     },
     {
       name: "MacBook Air with M2 chip",
       price: 2399,
       img: "/pictures/macbook-air-m2.png",
+      id: Math.random()
     },
     {
       name: "MacBook Air with M1 chip",
       price: 2999,
       img: "/pictures/macbook-air-m1.png",
+      id: Math.random()
     },
     {
       name: "Apple MacBook Pro 13",
       price: 2999,
       img: "/pictures/macbook-pro-13.png",
+      id: Math.random()
     },
   ];
 
@@ -39,21 +43,25 @@ function Recomend({ setCurrentItem }) {
       name: "Apple IMac 24 M1 chip",
       price: 1449,
       img: "https://content.rozetka.com.ua/goods/images/big/173875037.jpg",
+      id: Math.random()
     },
     {
       name: "Apple IMac 24 M3 chip",
       price: 1899,
       img: "https://i.moyo.ua/img/products/5565/26_600.jpg",
+      id: Math.random()
     },
     {
       name: "Apple IMac 24 M1 256gb",
       price: 1359,
       img: "https://content2.rozetka.com.ua/goods/images/big/173875373.jpg",
+      id: Math.random()
     },
     {
       name: "Apple IMac 24 M4 chip",
       price: 1999,
       img: "https://content1.rozetka.com.ua/goods/images/big/485317855.jpg",
+      id: Math.random()
     },
   ]
 

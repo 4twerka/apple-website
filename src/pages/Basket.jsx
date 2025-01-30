@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 function Basket({ currentItem, setCurrentItem }) {
+  const [value, setValue] = useState();
+
     Basket.propTypes = {
         currentItem: PropTypes.arrayOf(
           PropTypes.shape({
@@ -19,13 +22,12 @@ function Basket({ currentItem, setCurrentItem }) {
       const tax = (sum * 8) / 100 | 0;
 
       const handleDelete = (id) => {
-        const result = currentItem.filter((item) => {
-            if (item === id) {
-                return false;
-            } else true;
+        const result = currentItem.filter((item) => item.id !== id);
+        setCurrentItem(result);
+      };
 
-            setCurrentItem(result);
-        })
+      const handleChange = (e) => {
+        setValue(e.target.value);
       }
 
     return (
@@ -64,11 +66,14 @@ function Basket({ currentItem, setCurrentItem }) {
   
                   <div className="flex items-center space-x-4 mt-4 sm:mt-0 sm:ml-auto">
                     <input
+                      onChange={handleChange}
+                      value={value}
+                      min={1}
                       type="number"
                       className="w-16 text-center border border-gray-300 rounded-md"
                       defaultValue="1"
                     />
-                    <button onClick={() => {handleDelete(item.id)}} className="text-red-500 hover:text-red-700 transition">
+                    <button onClick={() => handleDelete(item.id)} className="text-red-500 hover:text-red-700 transition">
                       Remove
                     </button>
                   </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -22,22 +21,26 @@ function Airpods({ setCurrentItem }) {
       name: "AirPods 2nd generation",
       price: 129,
       img: "/pictures/airpods2.png",
+      id: Math.random()
     },
     {
       name: "AirPods 3rd generation",
       price: 169,
       img: "/pictures/airpods3.png",
+      id: Math.random()
     },
     {
       name: "AirPods Pro 2nd generation",
       price: 249,
       img: "/pictures/airpodspro.png",
       label: "New",
+      id: Math.random()
     },
     {
       name: "AirPods Max",
       price: 449,
       img: "/pictures/airpods-max.png",
+      id: Math.random()
     },
   ];
 
