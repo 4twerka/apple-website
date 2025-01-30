@@ -1,14 +1,21 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Basket({ currentItem, setCurrentItem }) {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(() => {
+    const savedPrice = localStorage.getItem("price");
+    return savedPrice ? JSON.parse(savedPrice): [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("price", JSON.stringify(value));
+  }, [value])
 
     Basket.propTypes = {
         currentItem: PropTypes.arrayOf(
           PropTypes.shape({
             name: PropTypes.string.isRequired,
-            price: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
             img: PropTypes.string.isRequired,
             id: PropTypes.number.isRequired,
           })
@@ -16,7 +23,7 @@ function Basket({ currentItem, setCurrentItem }) {
         setCurrentItem: PropTypes.func.isRequired,
     };
       const sum = currentItem.reduce((acc, currentValue) => {
-        return acc + currentValue.price;
+        return acc + currentValue.price * (value[currentValue.id] || 1)
       }, 0);
 
       const tax = (sum * 8) / 100 | 0;
@@ -26,8 +33,9 @@ function Basket({ currentItem, setCurrentItem }) {
         setCurrentItem(result);
       };
 
-      const handleChange = (e) => {
-        setValue(e.target.value);
+      const handleChange = (id, e) => {
+        const newValue = Math.max(1, Number(e.target.value));
+        setValue((prev) => ({ ...prev, [id]: newValue }));
       }
 
     return (
@@ -66,8 +74,8 @@ function Basket({ currentItem, setCurrentItem }) {
   
                   <div className="flex items-center space-x-4 mt-4 sm:mt-0 sm:ml-auto">
                     <input
-                      onChange={handleChange}
-                      value={value}
+                      onChange={(e) => handleChange(item.id, e)}
+                      value={value[item.id] || 1}
                       min={1}
                       type="number"
                       className="w-16 text-center border border-gray-300 rounded-md"
