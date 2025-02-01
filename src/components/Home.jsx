@@ -19,7 +19,6 @@ function Home({ currentItem, recomendRef, airpodsRef, airpodsMaxRef, footerRef }
   };
 
   const navigation = [
-    { name: "Store", ref: null },
     { name: "Mac", ref: recomendRef },
     { name: "AirPods", ref: airpodsRef },
     { name: "Only On Apple", ref: airpodsMaxRef },
