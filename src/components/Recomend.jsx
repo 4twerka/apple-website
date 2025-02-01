@@ -86,7 +86,7 @@ function Recomend({ setCurrentItem }) {
           Which Mac is right for you?
         </h2>
         <div className="flex justify-center space-x-4 text-base sm:text-lg font-medium">
-          <button onClick={handleMenuLaptop} className={isDesktop ? "text-gray-400" : "border-b-2 border-black pb-1"}>Notebook</button>
+          <button onClick={handleMenuLaptop} className={isDesktop ? "text-gray-400 hover:text-black transition" : "border-b-2 border-black pb-1"}>Notebook</button>
           <button onClick={handleMenu} className={isDesktop ? "border-b-2 border-black pb-1" : "text-gray-400 hover:text-black transition"}>
             Desktop
           </button>
@@ -150,7 +150,6 @@ function Recomend({ setCurrentItem }) {
                   {item.price} USD
                 </span>
                 <div className="flex justify-center gap-4">
-                  {/* here */}
                   <button onClick={() => hanldeAdd(item)} className="px-4 py-2 bg-dark-custom-purple text-white rounded-2xl shadow-md transition hover:bg-light-custom-purple">
                     Buy
                   </button>

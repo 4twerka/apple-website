@@ -38,6 +38,10 @@ function Basket({ currentItem, setCurrentItem }) {
         setValue((prev) => ({ ...prev, [id]: newValue }));
       }
 
+      const handleDeleteAll = () => {
+        setCurrentItem([]);
+      }
+
     return (
       <div className="bg-gray-50 min-h-screen p-4 sm:p-8">
         <header className="border-b border-gray-300 pb-4 mb-6">
@@ -109,6 +113,13 @@ function Basket({ currentItem, setCurrentItem }) {
             <p>Total</p>
             <p>${sum + tax}</p>
           </div>
+          {currentItem && currentItem.length > 0 ? (
+            <div>
+            <button onClick={() => handleDeleteAll()} className='text-red-500'>
+              Remove all
+            </button>
+          </div>
+          ) : null}
           <button className="w-full bg-blue-600 text-white rounded-md py-3 mt-6 hover:bg-blue-700 transition">
             Proceed to Checkout
           </button>

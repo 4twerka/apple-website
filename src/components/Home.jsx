@@ -1,26 +1,29 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function Home({ currentItem }) {
+function Home({ currentItem, recomendRef, airpodsRef, airpodsMaxRef, footerRef }) {
   Home.propTypes = {
-          currentItem: PropTypes.arrayOf(
-            PropTypes.shape({
-              name: PropTypes.string.isRequired,
-              price: PropTypes.string.isRequired,
-              img: PropTypes.string.isRequired,
-              id: PropTypes.number.isRequired,
-            })
-          ),
-          setCurrentItem: PropTypes.func.isRequired,
+    currentItem: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        price: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+      })
+    ),
+    recomendRef: PropTypes.object,
+    airpodsRef: PropTypes.object,
+    airpodsMaxRef: PropTypes.object,
+    footerRef: PropTypes.object,
   };
 
   const navigation = [
-    { name: "Store" },
-    { name: "Mac" },
-    { name: "AirPods" },
-    { name: "Only On Apple" },
-    { name: "Support" },
+    { name: "Store", ref: null },
+    { name: "Mac", ref: recomendRef },
+    { name: "AirPods", ref: airpodsRef },
+    { name: "Only On Apple", ref: airpodsMaxRef },
+    { name: "Support", ref: footerRef },
   ];
 
   const [isOpen, setIsOpen] = useState(false);
@@ -29,10 +32,16 @@ function Home({ currentItem }) {
     setIsOpen((prev) => !prev);
   };
 
+  const handleScroll = (ref) => {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="flex items-center justify-between px-8 py-4 relative z-50">
-
         <div>
           <img src="/pictures/apple.png" alt="Apple" className="h-6" />
         </div>
@@ -43,22 +52,21 @@ function Home({ currentItem }) {
           aria-label="Toggle menu"
         >
           <div className="relative w-8 h-8">
-
             <span
               className={`block absolute h-1 w-full bg-white rounded transition-all duration-300 ease-in-out ${
                 isOpen ? "transform rotate-45 top-1/2 -translate-y-1/2" : "top-0"
               }`}
             ></span>
-
             <span
               className={`block absolute h-1 w-full bg-white rounded transition-all duration-300 ease-in-out ${
                 isOpen ? "opacity-0" : "top-1/2 -translate-y-1/2"
               }`}
             ></span>
-
             <span
               className={`block absolute h-1 w-full bg-white rounded transition-all duration-300 ease-in-out ${
-                isOpen ? "transform -rotate-45 bottom-1/2 translate-y-1/2" : "bottom-0"
+                isOpen
+                  ? "transform -rotate-45 bottom-1/2 translate-y-1/2"
+                  : "bottom-0"
               }`}
             ></span>
           </div>
@@ -66,25 +74,25 @@ function Home({ currentItem }) {
 
         <ul className="hidden sm:flex space-x-8 text-sm">
           {navigation.map((item) => (
-            <li key={item.name} className="hover:underline cursor-pointer">
+            <li
+              key={item.name}
+              onClick={() => handleScroll(item.ref)}
+              className="hover:underline cursor-pointer"
+            >
               {item.name}
             </li>
           ))}
         </ul>
 
         <div className="hidden sm:flex items-center space-x-8">
-          <button>
-            <img src="/pictures/search.png" alt="Search" className="h-5" />
-          </button>
           <Link to="/basket" className="relative inline-block">
             <img src="/pictures/shop.png" alt="Shop" className="h-5" />
             {currentItem.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-              {currentItem.length}
-            </span>
+                {currentItem.length}
+              </span>
             )}
           </Link>
-
         </div>
       </header>
 
@@ -94,26 +102,22 @@ function Home({ currentItem }) {
             {navigation.map((item) => (
               <li
                 key={item.name}
-                onClick={() => setIsOpen(false)}
+                onClick={() => handleScroll(item.ref)}
                 className="hover:underline cursor-pointer"
               >
                 {item.name}
               </li>
             ))}
           </ul>
-
           <div className="flex items-center space-x-6">
-            <button onClick={() => setIsOpen(false)}>
-              <img src="/pictures/search.png" alt="Search" className="h-8" />
-            </button>
-            <Link to="/basket" className="relative inline-block">
-            <img src="/pictures/shop.png" alt="Shop" className="h-5" />
-            {currentItem.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-              {currentItem.length}
-            </span>
-            )}
-          </Link>
+            <Link to="/basket" className="relative inline-block" onClick={() => setIsOpen(false)}>
+              <img src="/pictures/shop.png" alt="Shop" className="h-5" />
+              {currentItem.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {currentItem.length}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       )}
@@ -121,9 +125,7 @@ function Home({ currentItem }) {
       <section className="relative h-screen flex items-center justify-center text-center">
         <div
           className="absolute inset-0 bg-center bg-no-repeat bg-contain"
-          style={{
-            backgroundImage: "url('/pictures/macbook-air-2020.png')",
-          }}
+          style={{ backgroundImage: "url('/pictures/macbook-air-2020.png')" }}
         ></div>
         <div className="relative z-10 px-4 sm:px-8 text-white max-w-2xl mx-auto">
           <h1 className="text-3xl sm:text-5xl font-bold mb-4">
@@ -133,16 +135,19 @@ function Home({ currentItem }) {
             Enjoy pure picture quality with Mini-LED technology
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <button className="px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto bg-dark-custom-purple text-white rounded-full shadow-lg hover:bg-light-custom-purple text-lg sm:text-xl">
-              Buy
-            </button>
-            <button className="px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto border border-light-custom-purple text-light-custom-purple rounded-full transition-all duration-500 hover:bg-light-custom-purple hover:text-white text-lg sm:text-xl">
-              Learn More
-            </button>
+            <Link to="/macbook-pro" className="w-full sm:w-auto">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 bg-dark-custom-purple text-white rounded-full shadow-lg hover:bg-light-custom-purple text-lg sm:text-xl w-full">
+                Buy
+              </button>
+            </Link>
+            <Link to="/macbook-pro" className="w-full sm:w-auto">
+              <button className="px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto border border-light-custom-purple text-light-custom-purple rounded-full transition-all duration-500 hover:bg-light-custom-purple hover:text-white text-lg sm:text-xl">
+                Learn More
+              </button>
+            </Link>
           </div>
         </div>
       </section>
-
     </div>
   );
 }

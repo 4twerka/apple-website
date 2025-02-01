@@ -38,7 +38,7 @@ function Airpods({ setCurrentItem }) {
     },
     {
       name: "AirPods Max",
-      price: 449,
+      price: 549,
       img: "/pictures/airpods-max.png",
       id: Math.random()
     },
