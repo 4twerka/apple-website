@@ -113,7 +113,7 @@ function Basket({ currentItem, setCurrentItem }) {
             <p>Total</p>
             <p>${sum + tax}</p>
           </div>
-          {currentItem && currentItem.length > 0 ? (
+          {currentItem && currentItem.length > 1 ? (
             <div>
             <button onClick={() => handleDeleteAll()} className='text-red-500'>
               Remove all

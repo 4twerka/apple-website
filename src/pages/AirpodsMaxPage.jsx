@@ -1,17 +1,29 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function AirpodsMaxPage() {
+function AirpodsMaxPage({ setCurrentItem }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const itemAirpods = {
+    name: "AirPods Max",
+    price: 599,
+    img: "/pictures/airpods-max.png",
+    id: Math.random(),
+  };
+
+  const handleAddAirpods = () => {
+    setCurrentItem([itemAirpods])
+  }
 
   return (
     <div className="bg-white text-gray-900">
       <header className="relative flex flex-col items-center justify-center min-h-screen bg-black overflow-hidden">
         <Link
           to="/"
-          className="absolute top-4 left-4 z-20 text-white py-2 px-4 rounded-full text-sm  transition duration-300"
+          className="absolute top-4 left-4 z-20 text-white py-2 px-4 rounded-full text-sm transition duration-300"
         >
           <img src="/pictures/apple.png" alt="Home" />
         </Link>
@@ -19,6 +31,8 @@ function AirpodsMaxPage() {
           autoPlay
           loop
           muted
+          playsInline
+          disablePictureInPicture
           className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
         >
           <source src="/pictures/airpodsmax.mp4" type="video/mp4" />
@@ -26,17 +40,19 @@ function AirpodsMaxPage() {
         </video>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
-            AirPods Max
+            {itemAirpods.name}
           </h1>
           <p className="text-lg md:text-2xl text-white mb-8">
             Experience immersive, high-fidelity audio.
           </p>
           <p className="text-3xl md:text-4xl font-semibold text-white mb-6">
-            $549
+            {itemAirpods.price}$
           </p>
-          <button className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300">
-            Buy Now
-          </button>
+          <Link to="/basket">
+            <button onClick={handleAddAirpods} className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300">
+              Buy Now
+            </button>
+          </Link>
         </div>
       </header>
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
@@ -62,7 +78,12 @@ function AirpodsMaxPage() {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"
+                    />
                   </svg>
                 </div>
                 <div className="ml-4">
@@ -81,7 +102,12 @@ function AirpodsMaxPage() {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
                 <div className="ml-4">
@@ -100,7 +126,12 @@ function AirpodsMaxPage() {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19V6l12-2v13" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 19V6l12-2v13"
+                    />
                   </svg>
                 </div>
                 <div className="ml-4">
@@ -122,9 +153,11 @@ function AirpodsMaxPage() {
           <p className="text-lg md:text-xl mb-8">
             Discover the perfect blend of design and performance with AirPods Max.
           </p>
-          <button className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300">
-            Shop Now
-          </button>
+          <Link to="/">
+            <button className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300">
+              Shop Now
+            </button>
+          </Link>
         </div>
       </section>
       <footer className="py-8 bg-gray-100 text-center">
@@ -133,5 +166,9 @@ function AirpodsMaxPage() {
     </div>
   );
 }
+
+AirpodsMaxPage.propTypes = {
+  setCurrentItem: PropTypes.func.isRequired,
+};
 
 export { AirpodsMaxPage };

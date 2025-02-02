@@ -1,10 +1,22 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function MacbookProPage() {
+function MacbookProPage({ setCurrentItem }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const itemMac = {
+    name: "MacBook Air with M1 chip",
+    price: 2999,
+    img: "/pictures/macbook-air-m1.png",
+    id: Math.random(),
+  };
+
+  const handleAddMac = () => {
+    setCurrentItem([itemMac]);
+  };
 
   return (
     <div className="bg-white text-gray-900">
@@ -19,6 +31,7 @@ function MacbookProPage() {
           autoPlay
           loop
           muted
+          playsInline
           className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
         >
           <source src="/pictures/macbook.mp4" type="video/mp4" />
@@ -26,17 +39,22 @@ function MacbookProPage() {
         </video>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
-            MacBook Pro
+            {itemMac.name}
           </h1>
           <p className="text-lg md:text-2xl text-white mb-8">
             Power. Performance. Precision.
           </p>
           <p className="text-3xl md:text-4xl font-semibold text-white mb-6">
-            $1,999
+            {itemMac.price}$
           </p>
-          <button className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300">
-            Buy Now
-          </button>
+          <Link to="/basket">
+            <button
+              onClick={handleAddMac}
+              className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300"
+            >
+              Buy Now
+            </button>
+          </Link>
         </div>
       </header>
 
@@ -141,9 +159,11 @@ function MacbookProPage() {
           <p className="text-lg md:text-xl mb-8">
             Elevate your productivity and creativity with the new MacBook Pro.
           </p>
-          <button className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300">
-            Shop Now
-          </button>
+          <Link to="/">
+            <button className="bg-white text-black py-3 px-8 rounded-full text-sm md:text-base hover:bg-gray-200 transition duration-300">
+              Shop Now
+            </button>
+          </Link>
         </div>
       </section>
 
@@ -153,5 +173,9 @@ function MacbookProPage() {
     </div>
   );
 }
+
+MacbookProPage.propTypes = {
+  setCurrentItem: PropTypes.func.isRequired,
+};
 
 export { MacbookProPage };

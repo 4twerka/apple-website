@@ -12,7 +12,14 @@ import { MacbookProPage } from "./pages/MacbookProPage";
 function App() {
   const [currentItem, setCurrentItem] = useState(() => {
     const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
+    if (savedCart && savedCart !== "undefined") {
+      try {
+        return JSON.parse(savedCart);
+      } catch (error) {
+        console.error("Помилка парсингу savedCart:", error);
+      }
+    }
+    return [];
   });
 
   useEffect(() => {
@@ -59,8 +66,8 @@ function App() {
             <Basket currentItem={currentItem} setCurrentItem={setCurrentItem} />
           }
         />
-        <Route path="/airpods-max" element={<AirpodsMaxPage />} />
-        <Route path="/macbook-pro" element={<MacbookProPage />} />
+        <Route path="/airpods-max" element={<AirpodsMaxPage setCurrentItem={setCurrentItem} />} />
+        <Route path="/macbook-pro" element={<MacbookProPage setCurrentItem={setCurrentItem} />} />
       </Routes>
     </Router>
   );
