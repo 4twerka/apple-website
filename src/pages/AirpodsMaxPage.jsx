@@ -28,16 +28,19 @@ function AirpodsMaxPage({ setCurrentItem }) {
           <img src="/pictures/apple.png" alt="Home" />
         </Link>
         <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          disablePictureInPicture
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
-        >
-          <source src="/pictures/airpodsmax.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"            
+        poster="/pictures/airpodsmax-poster.jpg"
+        disablePictureInPicture
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
+      >
+        <source src="/pictures/airpodsmax.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
             {itemAirpods.name}

@@ -42,7 +42,7 @@ function Home({ currentItem, recomendRef, airpodsRef, airpodsMaxRef, footerRef }
     <div className="min-h-screen bg-black text-white">
       <header className="flex items-center justify-between px-4 py-3 sm:px-8 sm:py-4 relative z-50">
         <div className="flex-shrink-0">
-          <img src="/pictures/apple.png" alt="Apple" className="h-6 sm:h-8" />
+          <img src="/pictures/apple.png" alt="Apple" className="h-5 sm:h-5" />
         </div>
 
         <button
