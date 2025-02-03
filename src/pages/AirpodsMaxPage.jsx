@@ -33,7 +33,7 @@ function AirpodsMaxPage({ setCurrentItem }) {
         muted
         playsInline
         preload="auto"            
-        poster="/pictures/airpodsmax-poster.jpg"
+        poster="/pictures/bg-airpodsmax.png"
         disablePictureInPicture
         className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
       >

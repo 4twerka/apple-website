@@ -33,7 +33,7 @@ function MacbookProPage({ setCurrentItem }) {
         muted
         playsInline
         preload="auto"            
-        poster="/pictures/macbook-poster.jpg" 
+        poster="/pictures/macbook-air-2020.png"
         className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
       >
         <source src="/pictures/macbook.mp4" type="video/mp4" />
