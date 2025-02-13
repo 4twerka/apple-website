@@ -9,6 +9,7 @@ import { Basket } from "./pages/Basket";
 import { AirpodsMaxPage } from "./pages/AirpodsMaxPage";
 import { MacbookProPage } from "./pages/MacbookProPage";
 import { AddItem } from "./components/AddItem";
+import {FinalOrderPage} from "./pages/FinalOrderPage"
 
 function App() {
   const [isAdded, setIsAdded] = useState(false);
@@ -69,6 +70,7 @@ function App() {
             <Basket currentItem={currentItem} setCurrentItem={setCurrentItem} />
           }
         />
+        <Route path="/final-order" element={<FinalOrderPage currentItem={currentItem} setCurrentItem={setCurrentItem} />} />
         <Route path="/airpods-max" element={<AirpodsMaxPage setCurrentItem={setCurrentItem} />} />
         <Route path="/macbook-pro" element={<MacbookProPage setCurrentItem={setCurrentItem} />} />
       </Routes>
