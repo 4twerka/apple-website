@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function FinalOrderPage({ currentItem, setCurrentItem }) {
     const navigate = useNavigate();
@@ -23,8 +23,8 @@ function FinalOrderPage({ currentItem, setCurrentItem }) {
         e.preventDefault();
         setCurrentItem([]);
         setTimeout(() => {
-            navigate("/");
-        }, 1500)
+            navigate("/order-receipt");
+        }, 1500);
     };
 
     return (
@@ -37,7 +37,7 @@ function FinalOrderPage({ currentItem, setCurrentItem }) {
                     <div className="mt-3 space-y-3">
                         {currentItem.map((item) => (
                             <div key={item.id} className="flex items-center bg-white shadow-sm p-3 rounded-md">
-                                <img src={item.img} alt="order" className="w-16 h-16 object-contain rounded-md mr-4 border"/>
+                                <img src={item.img} alt="order" className="w-16 h-16 object-contain rounded-md mr-4 border" />
                                 <div className="flex-1">
                                     <p className="text-gray-800 font-medium">{item.name}</p>
                                     <p className="text-gray-600 text-sm">{item.price} USD</p>
@@ -59,7 +59,7 @@ function FinalOrderPage({ currentItem, setCurrentItem }) {
                     <input required type="tel" placeholder="Phone number" className="w-full outline-none p-2 border border-gray-300 rounded-md" />
                     <input required type="email" placeholder="Email" className="w-full outline-none p-2 border border-gray-300 rounded-md" />
                     <input required type="text" placeholder="Shipping addresses" className="w-full outline-none p-2 border border-gray-300 rounded-md" />
-                    
+
                     <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
                         Confirm order
                     </button>
