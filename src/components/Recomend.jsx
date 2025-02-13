@@ -4,8 +4,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import PropTypes from 'prop-types';
 
-
-function Recomend({ setCurrentItem }) {
+function Recomend({ setCurrentItem, setIsAdded }) {
   Recomend.propTypes = {
     setCurrentItem: PropTypes.func.isRequired,
   };
@@ -77,6 +76,8 @@ function Recomend({ setCurrentItem }) {
 
   const hanldeAdd = (item) => {
     setCurrentItem((prevItems) => [...prevItems, item]);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
   };  
 
   return (

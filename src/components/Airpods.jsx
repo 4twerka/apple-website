@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import PropTypes from 'prop-types';
 
-function Airpods({ setCurrentItem }) {
+function Airpods({ setCurrentItem, setIsAdded }) {
   Airpods.propTypes = {
     setCurrentItem: PropTypes.func.isRequired,
     currentItem: PropTypes.arrayOf(
@@ -46,6 +46,8 @@ function Airpods({ setCurrentItem }) {
 
   const handleAdd = (item) => {
     setCurrentItem((prevItems) => [...prevItems, item]);
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
   };
 
   return (

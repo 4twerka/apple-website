@@ -32,7 +32,7 @@ function AirpodsMaxPage({ setCurrentItem }) {
         loop
         muted
         playsInline
-        preload="auto"            
+        preload="auto"
         disablePictureInPicture
         className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
       >

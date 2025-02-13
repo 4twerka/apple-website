@@ -8,8 +8,10 @@ import Footer from "./components/Footer";
 import { Basket } from "./pages/Basket";
 import { AirpodsMaxPage } from "./pages/AirpodsMaxPage";
 import { MacbookProPage } from "./pages/MacbookProPage";
+import { AddItem } from "./components/AddItem";
 
 function App() {
+  const [isAdded, setIsAdded] = useState(false);
   const [currentItem, setCurrentItem] = useState(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart && savedCart !== "undefined") {
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <Router>
+      <AddItem isAdded={isAdded} setIsAdded={setIsAdded} />
       <Routes>
         <Route
           path="/"
@@ -46,10 +49,10 @@ function App() {
                 footerRef={footerRef} 
               />
               <div ref={recomendRef}>
-                <Recomend setCurrentItem={setCurrentItem} />
+                <Recomend setCurrentItem={setCurrentItem} setIsAdded={setIsAdded} />
               </div>
               <div ref={airpodsRef}>
-                <Airpods setCurrentItem={setCurrentItem} />
+                <Airpods setCurrentItem={setCurrentItem} setIsAdded={setIsAdded}/>
               </div>
               <div ref={airpodsMaxRef}>
                 <AirpodsMax />
