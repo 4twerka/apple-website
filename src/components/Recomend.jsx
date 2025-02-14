@@ -121,7 +121,7 @@ function Recomend({ setCurrentItem, setIsAdded }) {
                       Buy
                     </button>
                     <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
-                      Details
+                      <a href="https://www.apple.com">Details</a>
                     </button>
                   </div>
                 </div>
@@ -153,7 +153,7 @@ function Recomend({ setCurrentItem, setIsAdded }) {
                       Buy
                     </button>
                     <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
-                      Details
+                      <a href="https://www.apple.com">Details</a>
                     </button>
                   </div>
                 </div>
@@ -186,7 +186,7 @@ function Recomend({ setCurrentItem, setIsAdded }) {
                   Buy
                 </button>
                 <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
-                  Details
+                  <a href="https://www.apple.com">Details</a>
                 </button>
               </div>
             </div>
@@ -212,7 +212,7 @@ function Recomend({ setCurrentItem, setIsAdded }) {
                   Buy
                 </button>
                 <button className="px-4 py-2 bg-gray-200 text-dark-custom-purple border border-dark-custom-purple rounded-2xl shadow-md transition hover:bg-gray-300">
-                  Details
+                  <a href="https://www.apple.com">Details</a>
                 </button>
               </div>
             </div>
@@ -221,7 +221,7 @@ function Recomend({ setCurrentItem, setIsAdded }) {
       )}
   
       <div className="mt-8 flex justify-center gap-6 whitespace-nowrap">
-        <a href="#" className="text-blue-600 hover:underline text-sm sm:text-base">
+        <a href="https://www.apple.com/mac/compare/" className="text-blue-600 hover:underline text-sm sm:text-base">
           Compare all Mac models
         </a>
         <a href="#" className="text-blue-600 hover:underline text-sm sm:text-base">

@@ -99,7 +99,7 @@ function Airpods({ setCurrentItem, setIsAdded }) {
                         Buy
                       </button>
                       <button className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-lg hover:bg-gray-300 mx-1 transition-all">
-                        Details
+                        <a href="https://www.apple.com">Details</a>
                       </button>
                     </div>
                   </div>
@@ -139,7 +139,7 @@ function Airpods({ setCurrentItem, setIsAdded }) {
                     Buy
                   </button>
                   <button className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-lg hover:bg-gray-300 mx-1 transition-all">
-                    Details
+                    <a href="https://www.apple.com">Details</a>
                   </button>
                 </div>
               </div>
@@ -148,7 +148,7 @@ function Airpods({ setCurrentItem, setIsAdded }) {
         </div>
         <div className="text-center mt-8">
           <a
-            href="#"
+            href="https://www.apple.com/airpods/compare/"
             className="text-blue-600 hover:underline text-base font-medium whitespace-nowrap"
           >
             Compare all AirPods models &gt;
