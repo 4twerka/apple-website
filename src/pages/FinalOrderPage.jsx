@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function FinalOrderPage({ currentItem, setCurrentItem }) {
     const navigate = useNavigate();
+    const location = useLocation();
+    const value = location.state?.value || {};
 
     FinalOrderPage.propTypes = {
         currentItem: PropTypes.arrayOf(
@@ -16,7 +19,10 @@ function FinalOrderPage({ currentItem, setCurrentItem }) {
         setCurrentItem: PropTypes.func.isRequired,
     };
 
-    const sum = currentItem.reduce((acc, currentValue) => acc + currentValue.price, 0);
+    const sum = currentItem.reduce((acc, currentValue) => 
+        acc + currentValue.price * (value[currentValue.id] || 1), 0
+    );
+    
     const tax = (sum * 8) / 100 | 0;
 
     const handleOrderConfirm = (e) => {
@@ -40,7 +46,7 @@ function FinalOrderPage({ currentItem, setCurrentItem }) {
                                 <img src={item.img} alt="order" className="w-16 h-16 object-contain rounded-md mr-4 border" />
                                 <div className="flex-1">
                                     <p className="text-gray-800 font-medium">{item.name}</p>
-                                    <p className="text-gray-600 text-sm">{item.price} USD</p>
+                                    <p className="text-gray-600 text-sm">{item.price} USD x {value[item.id] || 1}</p>
                                 </div>
                             </div>
                         ))}

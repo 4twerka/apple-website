@@ -6,7 +6,7 @@ function Basket({ currentItem, setCurrentItem }) {
   const navigate = useNavigate();
   const [value, setValue] = useState(() => {
     const savedPrice = localStorage.getItem("price");
-    return savedPrice ? JSON.parse(savedPrice) : [];
+    return savedPrice ? JSON.parse(savedPrice) : {};
   });
 
   useEffect(() => {
@@ -123,7 +123,13 @@ function Basket({ currentItem, setCurrentItem }) {
           </div>
         ) : null}
         <button
-          onClick={() => navigate("/final-order")}
+          onClick={() => {
+            if (currentItem.length > 1) {
+              navigate("/final-order", { state: { value } })
+            } else {
+              alert("You need to add something to your cart");
+            }
+          }}
           className="w-full bg-blue-600 text-white rounded-md py-3 mt-6 hover:bg-blue-700 transition"
         >
           Proceed to Checkout
