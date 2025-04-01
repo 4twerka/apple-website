@@ -115,7 +115,7 @@ function Basket({ currentItem, setCurrentItem }) {
           <p>Total</p>
           <p>${sum + tax}</p>
         </div>
-        {currentItem && currentItem.length > 1 ? (
+        {currentItem && currentItem.length > 0 ? (
           <div>
             <button onClick={() => handleDeleteAll()} className='text-red-500'>
               Remove all
@@ -124,7 +124,7 @@ function Basket({ currentItem, setCurrentItem }) {
         ) : null}
         <button
           onClick={() => {
-            if (currentItem.length > 1) {
+            if (currentItem.length > 0) {
               navigate("/final-order", { state: { value } })
             } else {
               alert("You need to add something to your cart");
