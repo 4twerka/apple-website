@@ -129,10 +129,9 @@ function Home({ currentItem, recomendRef, airpodsRef, airpodsMaxRef, footerRef }
       )}
 
       <section className="relative h-screen flex items-center justify-center text-center">
-        <div
-          className="absolute inset-0 bg-center bg-no-repeat bg-contain"
-          style={{ backgroundImage: "url('/pictures/macbook-air-2020.png')" }}
-        ></div>
+          <div
+            className="absolute inset-0 w-full h-full bg-center bg-no-repeat bg-cover bg-[url('/pictures/macbookForPhone.jpg')] sm:bg-[url('/pictures/macbook-air-2020.png')]"
+          ></div>
         <div className="relative z-10 px-4 sm:px-8 text-white max-w-md sm:max-w-2xl mx-auto">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
             The New MacBook Pro 14
